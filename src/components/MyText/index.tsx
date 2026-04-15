@@ -12,12 +12,12 @@ function createTextComponent(
   function createMyText(textStyle: StyleType) {
     type Props = {
       color?: string;
-      size: SizeType;
+      size?: SizeType;
       children: React.ReactNode;
     } & TextProps;
 
     function MyText(props: Props) {
-      const { color = colors.textBlack, size, children, style, ...anyProps } = props;
+      const { color = colors.textBlack, size = 'text16', children, style, ...anyProps } = props;
 
       return (
         <Text
@@ -36,14 +36,14 @@ function createTextComponent(
         </Text>
       );
     }
-    MyText.defaultProps = { size: 'text16', };
     return MyText;
   }
 
   return {
     Bold: createMyText('bold'),
-    Medium: createMyText('medium'),
+    SemiBold: createMyText('semibold'),
     Regular: createMyText('regular'),
+    Italic: createMyText('italic'),
   };
 }
 

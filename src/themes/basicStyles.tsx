@@ -45,4 +45,13 @@ export default StyleSheet.create({
   textAlignCenter: { textAlign: 'center' },
   textDecorationThroughLine: { textDecorationLine: 'line-through' },
   textDecorationUnderLine: { textDecorationLine: 'underline' },
+  shadow: {
+    borderWidth: 1,
+    borderColor: colors.border,
+    elevation: 4,
+    shadowColor: colors.shadow,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { height: 2, width: 0 }
+  }
 });

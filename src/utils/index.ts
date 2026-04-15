@@ -34,3 +34,5 @@ export const getUpcomingDate = () => {
     max: `${max.getFullYear()}-${String(max.getMonth() + 1).padStart(2, '0')}-${String(max.getDate()).padStart(2, '0')}`,
   })
 }
+
+export const getPosterUrl = (path: string) => `http://image.tmdb.org/t/p/w185${path}`

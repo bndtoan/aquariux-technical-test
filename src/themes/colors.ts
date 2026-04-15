@@ -6,7 +6,9 @@ export default {
   textGrey: '#999999',
   textGreyDark: '#828282',
   backgroundBlue: '#042541',
+  backgroundWhite: '#FFFFFF',
   backgroundGrey: '#F8F8F8',
   buttonGrey: '#F5F5F5',
-  shadow: '#0000001A'
+  shadow: '#000000',
+  border: '#E3E3E3'
 }
