@@ -1,3 +1,7 @@
+type MovieFilterType = 'nowPlaying' | 'upcoming' | 'popular'
+
+type MovieSortType = 'alphabetical' | 'rating' | 'releaseDate'
+
 type MovieType = {
   id: number;
   title: string;
