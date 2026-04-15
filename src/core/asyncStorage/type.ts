@@ -1,0 +1,1 @@
+export type StorageKeyType = 'WATCH_LIST'
