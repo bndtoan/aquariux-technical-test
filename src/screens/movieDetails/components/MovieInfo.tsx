@@ -21,6 +21,7 @@ export default function MovieInfo({ movieItem, crews, isWatchListed, onToggleWat
     vote_average, tagline, overview
   } = movieItem || {};
 
+  // Find the certification rating of the cinema release (type 3) from the same country of origin 
   const contentRating = React.useMemo(() => {
     const releaseInfo = release_dates.results.find(item => item.iso_3166_1 === origin_country[0])
     return releaseInfo?.release_dates.find(item => item.type === 3 && !!item.certification)?.certification || 'PG13'
