@@ -12,9 +12,9 @@ export default function UserScore({ score }: Props) {
   return (
     <View style={styles.container}>
       <CircularProgress size={52} lineWidth={4} backgroundLineWidth={4} percent={percent}>
-        <View style={styles.percent}>
+        <View style={styles.percentContainer}>
           <MyText.Bold size='text20' color={colors.textWhite}>{percent}</MyText.Bold>
-          <MyText.Bold size='text6' color={colors.textWhite}>%</MyText.Bold>
+          <MyText.Bold size='text6' color={colors.textWhite} style={styles.percent}>%</MyText.Bold>
         </View>
       </CircularProgress>
     </View>
@@ -30,7 +30,10 @@ const styles = StyleSheet.create({
     marginBottom: metrics.space8,
     ...basicStyles.center,
   },
-  percent: {
+  percentContainer: {
     flexDirection: 'row',
+  },
+  percent: {
+    marginTop: 4,
   }
 });
