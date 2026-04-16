@@ -8,7 +8,11 @@ export type TabParamTypes = {
 
 export type RootStackParamList = {
   tabs: undefined;
-  movieDetails: undefined
+  movieDetails: {
+    id: number;
+    title: string;
+    releaseDate: string;
+  }
 };
 
 declare global {
