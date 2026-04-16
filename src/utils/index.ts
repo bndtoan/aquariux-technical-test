@@ -35,4 +35,5 @@ export const getUpcomingDate = () => {
   })
 }
 
-export const getPosterUrl = (path: string) => `http://image.tmdb.org/t/p/w185${path}`
+export const getPosterUrl = (path: string, size: string = 'w185') => `http://image.tmdb.org/t/p/${size}${path}`
+export const getProfileUrl = (path: string) => `http://image.tmdb.org/t/p/w185${path}`

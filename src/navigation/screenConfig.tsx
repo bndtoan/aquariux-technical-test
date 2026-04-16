@@ -11,6 +11,6 @@ export const screenConfig: ConfigsType<RootStackParamList> = [
   {
     name: 'movieDetails',
     component: MovieDetailsScreen,
-    options: {}
+    options: { headerShown: false }
   },
 ]

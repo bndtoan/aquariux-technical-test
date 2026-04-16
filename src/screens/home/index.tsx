@@ -122,7 +122,7 @@ export default function HomeScreen({ navigation }: Props) {
         !state.isFetching ? (
           <View style={basicStyles.flexAlignCenter}>
             <MyText.Italic size='text14' color={colors.textGrey} style={basicStyles.textAlignCenter}>
-              {strings.noMovie}
+              {strings.noData}
             </MyText.Italic>
           </View>
         ) : null

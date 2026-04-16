@@ -3,6 +3,7 @@ export default {
   textBlack: '#000000',
   textBlackLight: '#00000080',
   textWhite: '#FFFFFF',
+  textWhiteLight: '#FFFFFFB2',
   textGrey: '#999999',
   textGreyDark: '#828282',
   backgroundBlue: '#042541',

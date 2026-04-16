@@ -1,4 +1,5 @@
 export default {
+  // HOME
   nowPlaying: "Now Playing",
   upcoming: "Upcoming",
   popular: "Popular",
@@ -8,6 +9,17 @@ export default {
   byRelease: "By release date",
   searchPlaceholder: "Search...",
   search: "Search",
-  noMovie: "No movies available",
-  loadMore: "Load More"
+  loadMore: "Load More",
+
+  // DETAILS
+  status: 'Status: ',
+  originalLanguage: 'Original Language: ',
+  userScore: 'User Score',
+  overview: 'Overview',
+  addToWatchList: 'Add To Watchlist',
+  removeFromWatchList: 'Remove From Watchlist',
+  topBilledCast: 'Top Billed Cast',
+  recommendations: 'Recommendations',
+
+  noData: "No data available",
 }

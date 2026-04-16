@@ -9,7 +9,7 @@ import TabBarIcon from './TabBarIcon';
 type TabConfig = {
   name: keyof TabParamTypes;
   icon: ImageSourcePropType;
-  component: () => React.ReactNode;
+  component: (props: any) => React.ReactNode;
   options: BottomTabNavigationOptions
 }
 

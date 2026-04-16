@@ -6,4 +6,5 @@ export default {
   icDelete: require('../assets/ic-delete.png'),
   icHome: require('../assets/ic-home.png'),
   icWatchList: require('../assets/ic-watch-list.png'),
+  icBookmark: require('../assets/ic-bookmark.png'),
 };

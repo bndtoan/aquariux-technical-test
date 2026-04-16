@@ -28,8 +28,8 @@ export default {
   },
 
   // DETAILS
-  requestMovieDetails: (id: number) => requestApi.get<R>(`/movie/${id}`),
-  requestMovieCredits: (id: number) => requestApi.get<R>(`/movie/${id}/credits`),
+  requestMovieDetails: (id: number) => requestApi.get<MovieDetailsType>(`/movie/${id}?append_to_response=release_dates`),
+  requestMovieCredits: (id: number) => requestApi.get<CreditsType>(`/movie/${id}/credits`),
   requestMovieRecommendations: (id: number) => requestApi.get<R>(`/movie/${id}/recommendations`),
 
   // WATCH LIST
