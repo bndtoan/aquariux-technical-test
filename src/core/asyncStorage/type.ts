@@ -1,1 +1,1 @@
-export type StorageKeyType = 'WATCH_LIST'
+export type StorageKeyType = 'WATCH_LIST' | 'SORT_TYPE'

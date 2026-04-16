@@ -12,6 +12,10 @@ type Props = {
   ) => void;
 };
 
+type RefType = {
+  setInitialSort: (sort: MovieSortType) => void;
+};
+
 export const filterOptions: PickerOption<MovieFilterType>[] = [
   { value: 'nowPlaying', label: strings.nowPlaying },
   { value: 'upcoming', label: strings.upcoming },
@@ -24,10 +28,17 @@ const sortOptions: PickerOption<MovieSortType>[] = [
   { value: 'releaseDate', label: strings.byRelease },
 ]
 
-export default function ListHeader({ onOptionChange }: Props) {
+export default React.forwardRef<RefType, Props>(function ListHeader({ onOptionChange }, ref) {
   const [search, setSearch] = React.useState<string>('');
   const [filterBy, setFilterBy] = React.useState<PickerOption<MovieFilterType>>(filterOptions[0]);
   const [sortBy, setSortBy] = React.useState<PickerOption<MovieSortType>>();
+
+  React.useImperativeHandle(ref, () => ({
+    setInitialSort: (sort) => {
+      const option = sortOptions.find(option => option.value === sort);
+      setSortBy(option);
+    }
+  }))
 
   return (
     <>
@@ -66,7 +77,7 @@ export default function ListHeader({ onOptionChange }: Props) {
       </TouchableOpacity>
     </>
   )
-}
+})
 
 const styles = StyleSheet.create({
   searchContainer: {

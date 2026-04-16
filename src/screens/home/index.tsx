@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { MovieItem, MyText } from '../../components';
 import api from '../../core/api';
+import asyncStorage from '../../core/asyncStorage';
 import { NativeStackNavigationChildren } from '../../navigation/types';
 import { basicStyles, colors, metrics, strings } from '../../themes';
 import ListFooter from './components/ListFooter';
@@ -19,6 +20,8 @@ type States = {
 };
 
 export default function HomeScreen({ navigation }: Props) {
+  const listHeaderRef = React.useRef<any>(null);
+
   const page = React.useRef<number>(1);
   const filterBy = React.useRef<MovieFilterType>(filterOptions[0].value);
   const sortBy = React.useRef<MovieSortType | undefined>(undefined);
@@ -31,12 +34,19 @@ export default function HomeScreen({ navigation }: Props) {
   });
 
   React.useEffect(() => {
-    requesMovieList();
+    (async () => {
+      // restore previously selected sort type if any before first api call
+      const initialSort = await asyncStorage.get('SORT_TYPE')
+      sortBy.current = initialSort;
+      listHeaderRef.current.setInitialSort(initialSort);
+
+      requestMovieList();
+    })()
   }, [])
 
   const setNewState = (next: Partial<States>) => setState((prev) => ({ ...prev, ...next }))
 
-  const requesMovieList = async (isRefreshing: boolean = false) => {
+  const requestMovieList = async (isRefreshing: boolean = false) => {
     if (isRefreshing) {
       page.current = 1
       setNewState({ isRefreshing: true });
@@ -67,13 +77,13 @@ export default function HomeScreen({ navigation }: Props) {
   };
 
   const handleRefresh = () => {
-    requesMovieList(true);
+    requestMovieList(true);
   };
 
   const handleLoadMore = () => {
     const { canLoadMore, isRefreshing } = state;
     if (canLoadMore && !isRefreshing) {
-      requesMovieList();
+      requestMovieList();
     }
   };
 
@@ -82,11 +92,16 @@ export default function HomeScreen({ navigation }: Props) {
     sort: MovieSortType | undefined,
     search: string,
   ) => {
+    // Save sort type to storage
+    if (sort && sort !== sortBy.current) {
+      asyncStorage.set('SORT_TYPE', sort)
+    }
+
     filterBy.current = filter;
     sortBy.current = sort;
     searchQuery.current = search;
     page.current = 1;
-    requesMovieList();
+    requestMovieList();
   }
 
   return (
@@ -109,7 +124,7 @@ export default function HomeScreen({ navigation }: Props) {
         />
       )}
       ListHeaderComponent={
-        <ListHeader onOptionChange={handleOptionChange} />
+        <ListHeader ref={listHeaderRef} onOptionChange={handleOptionChange} />
       }
       ListFooterComponent={
         <ListFooter
