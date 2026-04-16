@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MyText } from '../../../components';
 import { basicStyles, colors, imageResources, metrics, strings } from '../../../themes';
-import { getPosterUrl } from '../../../utils';
+import { formatReleaseDate, getPosterUrl } from '../../../utils';
 import UserScore from './UserScore';
 
 export type CrewData = Record<number, { name: string, jobs: string[] }>;
@@ -30,7 +30,7 @@ export default function MovieInfo({ movieItem, crews, isWatchListed, onToggleWat
   const releaseDateText = React.useMemo(() => {
     const runtimeH = Math.floor(runtime / 60);
     const runtimeM = runtime % 60;
-    return `${release_date} (${origin_country})  •  ${runtimeH}h ${runtimeM}m`
+    return `${formatReleaseDate(release_date)} (${origin_country})  •  ${runtimeH}h ${runtimeM}m`
   }, [])
 
   const genresText = React.useMemo(() => {

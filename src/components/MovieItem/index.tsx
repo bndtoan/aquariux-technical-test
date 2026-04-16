@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View, ViewProps } from 'react-native';
 import { basicStyles, colors, imageResources, metrics } from '../../themes';
-import { getPosterUrl } from '../../utils';
+import { formatReleaseDate, getPosterUrl } from '../../utils';
 import MyText from '../MyText';
 
 type Props = {
@@ -19,7 +19,7 @@ export default function MovieItem({ item, onPressItem, onPressDelete, style }: P
       <Image source={{ uri: getPosterUrl(poster_path) }} style={styles.poster} />
       <View style={styles.infoContainer}>
         <MyText.SemiBold>{title}</MyText.SemiBold>
-        <MyText.Regular size='text14' color={colors.textGrey}>{release_date}</MyText.Regular>
+        <MyText.Regular size='text14' color={colors.textGrey}>{formatReleaseDate(release_date)}</MyText.Regular>
         <MyText.Regular size='text14' style={styles.overviewText} numberOfLines={2}>{overview}</MyText.Regular>
       </View>
       {onPressDelete && (
