@@ -3,6 +3,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { MyText } from '../../../components';
 import { basicStyles, colors, imageResources, metrics, strings } from '../../../themes';
 import { getPosterUrl } from '../../../utils';
+import UserScore from './UserScore';
 
 type Props = {
   movieItem: MovieDetailsType;
@@ -57,7 +58,7 @@ export default function MovieInfo({ movieItem, crews, isWatchListed, onToggleWat
       <View style={styles.bottomContainer}>
         <View style={basicStyles.row}>
           <View style={basicStyles.flex}>
-            {/* userscore */}
+            <UserScore score={vote_average} />
             <MyText.Bold size='text18' color={colors.textWhite}>{strings.userScore}</MyText.Bold>
           </View>
 
