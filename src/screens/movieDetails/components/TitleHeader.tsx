@@ -37,8 +37,8 @@ export default function TitleHeader({ title, releaseDate, onBack }: HeaderProps)
 
 const styles = StyleSheet.create({
   container: {
-    ...basicStyles.rowCenter,
-    height: 70,
+    ...basicStyles.rowAlignCenter,
+    height: 66,
     paddingHorizontal: 16,
     backgroundColor: colors.primary,
   },

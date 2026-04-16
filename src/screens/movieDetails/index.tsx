@@ -11,15 +11,16 @@ import api from "../../core/api";
 import { ScreenPropsType } from "../../navigation/types";
 import { basicStyles, colors, strings } from "../../themes";
 import CastList from "./components/CastList";
-import MovieInfo from "./components/MovieInfo";
+import MovieInfo, { CrewData } from "./components/MovieInfo";
 import RecommendationList from "./components/RecommendationList";
 import TitleHeader from "./components/TitleHeader";
+
 
 type States = {
   isFetching: boolean;
   movieDetails?: MovieDetailsType;
   casts: CastType[];
-  crews: CrewType[];
+  crews: CrewData;
   recommendations: MovieType[];
 }
 
@@ -33,7 +34,7 @@ export default function MovieDetails({ navigation, route }: ScreenPropsType<'mov
     isFetching: true,
     movieDetails: undefined,
     casts: [],
-    crews: [],
+    crews: {},
     recommendations: [],
   });
 
@@ -52,8 +53,17 @@ export default function MovieDetails({ navigation, route }: ScreenPropsType<'mov
 
     if (detailsRes.ok) {
       const casts = creditsRes.data?.cast || [];
-      const crews = (creditsRes.data?.crew || []).filter(
-        (crew) => crew.job?.includes('Director') || crew.job?.includes('Writer')
+      const crews = (creditsRes.data?.crew || []).reduce<CrewData>(
+        (prev, current) => {
+          if (current.job === 'Director' || current.job === 'Writer') {
+            if (prev[current.id]) {
+              prev[current.id].jobs.push(current.job);
+            } else {
+              prev[current.id] = { name: current.name, jobs: [current.job] }
+            }
+          }
+          return prev;
+        }, {}
       )
 
       setNewState({

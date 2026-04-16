@@ -1,9 +1,30 @@
 export const getSortQueryParam = (sort: MovieSortType | undefined) => {
   switch (sort) {
-    case 'alphabetical': return 'title.desc';
+    case 'alphabetical': return 'title.asc';
     case 'rating': return 'vote_average.desc';
     case 'releaseDate': return 'primary_release_date.desc';
     default: return 'popularity.desc';
+  }
+}
+
+export const sortMovieList = (list: MovieType[], sort: MovieSortType, order: MovieSortOrderType) => {
+  const tempList = [...list]
+  switch (sort) {
+    case 'alphabetical':
+      return tempList.sort((a, b) => {
+        const diff = a.title.localeCompare(b.title);
+        return order === 'asc' ? diff : -diff
+      })
+    case 'rating':
+      return tempList.sort((a, b) => {
+        const diff = a.vote_average - b.vote_average;
+        return order === 'asc' ? diff : -diff
+      })
+    case 'releaseDate':
+      return tempList.sort((a, b) => {
+        const diff = a.release_date > b.release_date ? 1 : -1
+        return order === 'asc' ? diff : -diff
+      })
   }
 }
 
@@ -37,3 +58,4 @@ export const getUpcomingDate = () => {
 
 export const getPosterUrl = (path: string, size: string = 'w185') => `http://image.tmdb.org/t/p/${size}${path}`
 export const getProfileUrl = (path: string) => `http://image.tmdb.org/t/p/w185${path}`
+export const getAvatarUrl = (path: string) => `http://image.tmdb.org/t/p/w300${path}`

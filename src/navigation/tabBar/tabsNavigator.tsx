@@ -24,9 +24,10 @@ export default function TabsNavigator() {
     <Tab.Navigator
       screenOptions={{
         lazy: true, headerShown: false, tabBarShowLabel: false,
-        tabBarStyle: styles.tabBarContainer, tabBarItemStyle: basicStyles.rowAlignCenter
+        tabBarStyle: styles.tabBarContainer, tabBarItemStyle: basicStyles.rowAlignCenter,
       }}
       initialRouteName='homeTab'
+      backBehavior='initialRoute'
     >
       {tabConfis.map(config => (
         <Tab.Screen

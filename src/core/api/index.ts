@@ -33,5 +33,5 @@ export default {
   requestMovieRecommendations: (id: number) => requestApi.get<R>(`/movie/${id}/recommendations`),
 
   // WATCH LIST
-  requestAccountInfo: () => requestApi.get<R>(`account/null`),
+  requestAccountInfo: () => requestApi.get<AccountType>(`account/null`),
 }

@@ -21,5 +21,13 @@ export default {
   topBilledCast: 'Top Billed Cast',
   recommendations: 'Recommendations',
 
+  // WATCH LIST
+  myWatchList: "My Watchlist",
+  fitlerBy: "Filter by:",
+  alphabetical: "Alphabetical",
+  rating: " Rating",
+  release: "Release date",
+  order: "Order:",
+
   noData: "No data available",
 }

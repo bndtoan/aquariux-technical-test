@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View, ViewProps } from 'react-native';
 import { basicStyles, colors, imageResources, metrics } from '../../themes';
 import { getPosterUrl } from '../../utils';
 import MyText from '../MyText';
@@ -8,13 +8,14 @@ type Props = {
   item: MovieType;
   onPressItem?: () => void;
   onPressDelete?: () => void;
+  style?: ViewProps['style'];
 };
 
-export default function MovieItem({ item, onPressItem, onPressDelete }: Props) {
+export default function MovieItem({ item, onPressItem, onPressDelete, style }: Props) {
   const { title, poster_path, overview, release_date } = item;
 
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.container} onPress={onPressItem}>
+    <TouchableOpacity activeOpacity={0.8} style={[styles.container, style]} onPress={onPressItem}>
       <Image source={{ uri: getPosterUrl(poster_path) }} style={styles.poster} />
       <View style={styles.infoContainer}>
         <MyText.SemiBold>{title}</MyText.SemiBold>

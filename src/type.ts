@@ -2,6 +2,8 @@ type MovieFilterType = 'nowPlaying' | 'upcoming' | 'popular'
 
 type MovieSortType = 'alphabetical' | 'rating' | 'releaseDate'
 
+type MovieSortOrderType = 'asc' | 'desc'
+
 type MovieType = {
   id: number;
   title: string;
@@ -54,4 +56,10 @@ type CreditsType = {
 type ReleaseDateType = {
   certification: string;
   type: number;
+}
+
+type AccountType = {
+  id: number;
+  avatar: { tmdb: { avatar_path: string } };
+  username: string;
 }

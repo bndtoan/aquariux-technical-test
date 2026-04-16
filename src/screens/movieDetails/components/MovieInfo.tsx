@@ -5,9 +5,11 @@ import { basicStyles, colors, imageResources, metrics, strings } from '../../../
 import { getPosterUrl } from '../../../utils';
 import UserScore from './UserScore';
 
+export type CrewData = Record<number, { name: string, jobs: string[] }>;
+
 type Props = {
   movieItem: MovieDetailsType;
-  crews: CrewType[];
+  crews: CrewData;
   isWatchListed: boolean;
   onToggleWatchList: () => void;
 };
@@ -63,10 +65,10 @@ export default function MovieInfo({ movieItem, crews, isWatchListed, onToggleWat
           </View>
 
           <View style={styles.crewContainer}>
-            {crews.map((crew) => (
-              <View key={crew.id}>
+            {Object.entries(crews).map(([id, crew]) => (
+              <View key={id}>
                 <MyText.SemiBold color={colors.textWhite}>{crew.name}</MyText.SemiBold>
-                <MyText.Regular color={colors.textWhite}>{crew.job}</MyText.Regular>
+                <MyText.Regular color={colors.textWhite}>{crew.jobs.join(', ')}</MyText.Regular>
               </View>
             ))}
           </View>
